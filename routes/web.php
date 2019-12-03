@@ -10,28 +10,18 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', "PagesController@home");
 
-Route::get('/', function () {
-    return view('home');
-});
-Route::get('/about', function () {
-    return view('about');
-});
-Route::get('/employees', function () {
-    return view('employees');
-});
-Route::get('/customers', function () {
-    return view('customers');
-});
-Route::get('/orders', function () {
-    return view('orders');
-});
-Route::get('/products', function () {
-    return view('products');
-});
-Route::get('/supplies', function () {
-    return view('supplies');
-});
-Route::get('/providers', function () {
-    return view('providers');
-});
+Route::get('/about', "PagesController@about");
+
+Route::get('/employees', "PagesController@employees");
+
+Route::get('/customers', "PagesController@customers");
+
+Route::get('/orders', "PagesController@orders");
+
+Route::get('/products', "PagesController@products");
+
+Route::get('/supplies', "PagesController@supplies");
+
+Route::get('/providers', "PagesController@providers");

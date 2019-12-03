@@ -13,10 +13,10 @@
             <th>Date Order</th>
         </tr>
         <tr>
-            <th>1</th>
-            <th>1</th>
-            <th>1</th>
-            <th>12.12.19</th>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>12.12.19</td>
         </tr>
     </table>
 @endsection

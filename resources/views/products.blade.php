@@ -16,13 +16,13 @@
             <th>Кількість</th>
         </tr>
         <tr>
-            <th>1</th>
-            <th>Nike Roshe Run</th>
-            <th>Sneakers</th>
-            <th>1399</th>
-            <th>1999</th>
-            <th>yes</th>
-            <th>12</th>
+            <td>1</td>
+            <td>Nike Roshe Run</td>
+            <td>Sneakers</td>
+            <td>1399</td>
+            <td>1999</td>
+            <td>yes</td>
+            <td>12</td>
         </tr>
     </table>
 @endsection

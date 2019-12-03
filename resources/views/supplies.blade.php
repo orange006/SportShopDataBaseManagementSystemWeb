@@ -11,8 +11,8 @@
             <th>Дата</th>
         </tr>
         <tr>
-            <th>1</th>
-            <th>10.12.19</th>
+            <td>1</td>
+            <td>10.12.19</td>
         </tr>
     </table>
 @endsection

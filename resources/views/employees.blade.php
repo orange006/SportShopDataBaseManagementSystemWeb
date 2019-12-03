@@ -12,11 +12,13 @@
             <th>Вік</th>
             <th>Номер телефону</th>
         </tr>
-        <tr>
-            <th>Єфімов Олексій Ігорович</th>
-            <th>CEO</th>
-            <th>19</th>
-            <th>0987654321</th>
-        </tr>
+        <?php foreach ($employees as $employee) : ?>
+            <tr>
+                <td>{{ $employee['FullNameEmployee'] }}</td>
+                <td>{{ $employee['Position'] }}</td>
+                <td>{{ $employee['Age'] }}</td>
+                <td>{{ $employee['PhoneNumberEmployee'] }}</td>
+            </tr>
+        <?php endforeach; ?>
     </table>
 @endsection

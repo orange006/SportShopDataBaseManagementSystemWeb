@@ -12,9 +12,9 @@
             <th>Номер телефону</th>
         </tr>
         <tr>
-            <th>Best Sneakers</th>
-            <th>Карлович Дмитро Григорович</th>
-            <th>0964447676</th>
+            <td>Best Sneakers</td>
+            <td>Карлович Дмитро Григорович</td>
+            <td>0964447676</td>
         </tr>
     </table>
 @endsection
