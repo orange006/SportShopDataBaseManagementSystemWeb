@@ -5,22 +5,26 @@
 @section("page-title", "Замовлення")
 
 @section("page-content")
-    <table>
-        <tr>
-            <th>id</th>
-            <th>IdProd</th>
-            <th>IdEmpl</th>
-            <th>IdCust</th>
-            <th>Date Order</th>
-        </tr>
-        @foreach ($orders as $order)
+    <table class="table table-striped table-dark">
+        <thead>
             <tr>
-                <td>{{ $order->id }}</td>
-                <td>{{ $order->IdProd }}</td>
-                <td>{{ $order->IdEmpl }}</td>
-                <td>{{ $order->IdCust }}</td>
-                <td>{{ $order->DateOrder }}</td>
+                <th scope="col">id</th>
+                <th scope="col">IdProd</th>
+                <th scope="col">IdEmpl</th>
+                <th scope="col">IdCust</th>
+                <th scope="col">Date Order</th>
             </tr>
-        @endforeach
+        </thead>
+        <tbody>
+            @foreach ($orders as $order)
+                <tr>
+                    <td>{{ $order->id }}</td>
+                    <td>{{ $order->IdProd }}</td>
+                    <td>{{ $order->IdEmpl }}</td>
+                    <td>{{ $order->IdCust }}</td>
+                    <td>{{ $order->DateOrder }}</td>
+                </tr>
+            @endforeach
+        </tbody>
     </table>
 @endsection

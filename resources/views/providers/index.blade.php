@@ -5,20 +5,24 @@
 @section("page-title", "Постачальники")
 
 @section("page-content")
-    <table>
-        <tr>
-            <th>id</th>
-            <th>Назва</th>
-            <th>Представник</th>
-            <th>Номер телефону</th>
-        </tr>
-        @foreach ($providers as $provider)
+    <table class="table table-striped table-dark">
+        <thead>
             <tr>
-                <td>{{ $provider->id }}</td>
-                <td>{{ $provider->NameProvider }}</td>
-                <td>{{ $provider->Representative }}</td>
-                <td>{{ $provider->PhoneNumberProvider }}</td>
+                <th scope="col">id</th>
+                <th scope="col">Назва</th>
+                <th scope="col">Представник</th>
+                <th scope="col">Номер телефону</th>
             </tr>
-        @endforeach
+        </thead>
+        <tbody>
+            @foreach ($providers as $provider)
+                <tr>
+                    <td>{{ $provider->id }}</td>
+                    <td>{{ $provider->NameProvider }}</td>
+                    <td>{{ $provider->Representative }}</td>
+                    <td>{{ $provider->PhoneNumberProvider }}</td>
+                </tr>
+            @endforeach
+        </tbody>
     </table>
 @endsection

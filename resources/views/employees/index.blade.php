@@ -5,22 +5,26 @@
 @section("page-title", "Працівники")
 
 @section("page-content")
-    <table>
-        <tr>
-            <th>id</th>
-            <th>Повне ім'я</th>
-            <th>Посада</th>
-            <th>Вік</th>
-            <th>Номер телефону</th>
-        </tr>
-        @foreach ($employees as $employee)
+    <table class="table table-striped table-dark">
+        <thead>
             <tr>
-                <td>{{ $employee->id }}</td>
-                <td>{{ $employee->FullNameEmployee }}</td>
-                <td>{{ $employee->Position }}</td>
-                <td>{{ $employee->Age }}</td>
-                <td>{{ $employee->PhoneNumberEmployee }}</td>
+                <th scope="col">id</th>
+                <th scope="col">Повне ім'я</th>
+                <th scope="col">Посада</th>
+                <th scope="col">Вік</th>
+                <th scope="col">Номер телефону</th>
             </tr>
-        @endforeach
+        </thead>
+        <tbody>
+            @foreach ($employees as $employee)
+                <tr>
+                    <td>{{ $employee->id }}</td>
+                    <td>{{ $employee->FullNameEmployee }}</td>
+                    <td>{{ $employee->Position }}</td>
+                    <td>{{ $employee->Age }}</td>
+                    <td>{{ $employee->PhoneNumberEmployee }}</td>
+                </tr>
+            @endforeach
+        </tbody>
     </table>
 @endsection

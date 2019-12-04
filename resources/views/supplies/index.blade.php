@@ -5,18 +5,22 @@
 @section("page-title", "Поставки")
 
 @section("page-content")
-    <table>
-        <tr>
-            <th>id</th>
-            <th>idProv</th>
-            <th>Дата</th>
-        </tr>
-        @foreach ($supplies as $supply)
+    <table class="table table-striped table-dark">
+        <thead>
             <tr>
-                <td>{{ $supply->id }}</td>
-                <td>{{ $supply->IdProv }}</td>
-                <td>{{ $supply->DateSupply }}</td>
+                <th scope="col">id</th>
+                <th scope="col">idProv</th>
+                <th scope="col">Дата</th>
             </tr>
-        @endforeach
+        </thead>
+        <tbody>
+            @foreach ($supplies as $supply)
+                <tr>
+                    <td>{{ $supply->id }}</td>
+                    <td>{{ $supply->IdProv }}</td>
+                    <td>{{ $supply->DateSupply }}</td>
+                </tr>
+            @endforeach
+        </tbody>
     </table>
 @endsection

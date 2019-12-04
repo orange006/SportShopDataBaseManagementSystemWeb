@@ -1,30 +1,46 @@
 <!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>
-        @yield("app-title")
-    </title>
-</head>
-<body>
-<ul>
-    <li><a href="/">Головна</a></li>
-    <li><a href="/about">Про нас</a></li>
-    <li><a href="/employees">Працівники</a></li>
-    <li><a href="/customers">Клієнти</a></li>
-    <li><a href="/orders">Замовлення</a></li>
-    <li><a href="/products">Продукція</a></li>
-    <li><a href="/supplies">Поставки</a></li>
-    <li><a href="/providers">Постачальники</a></li>
-</ul>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/cover.css') }}">
+        <title>
+            @yield("app-title")
+        </title>
+    </head>
 
-<h1>
-    @yield("page-title")
-</h1>
+    <body class="text-center">
+        <div class="container w-100 p-3 mx-auto ">
+            <header class="masthead mb-auto d-flex flex-column">
+                <div class="inner">
+                    <h3 class="masthead-brand">@yield("app-title")</h3>
+                    <nav class="nav nav-masthead justify-content-center">
+                        <a class="nav-link" href="/">Головна</a>
+                        <a class="nav-link" href="/employees">Працівники</a>
+                        <a class="nav-link" href="/customers">Клієнти</a>
+                        <a class="nav-link" href="/orders">Замовлення</a>
+                        <a class="nav-link" href="/products">Продукція</a>
+                        <a class="nav-link" href="/supplies">Поставки</a>
+                        <a class="nav-link" href="/providers">Постачальники</a>
+                        <a class="nav-link" href="/about">Про нас</a>
+                    </nav>
+                </div>
+            </header>
 
-@yield("page-content")
-</body>
+            <main role="main" class="inner cover">
+                <h1 class="cover-heading mt-5">@yield("page-title")</h1>
+
+                @yield("page-content")
+            </main>
+
+            <footer class="mastfoot mt-auto">
+                <div class="inner">
+                    @yield("page-footer")
+                </div>
+            </footer>
+        </div>
+    </body>
 </html>
