@@ -13,4 +13,24 @@ class OrdersController extends Controller {
             'orders' => $orders,
         ]);
     }
+
+    public function create() {
+        return view('orders/create');
+    }
+
+    public function store() {
+        $order = new Order();
+
+        $order->IdProd = \request('order-idprod');
+
+        $order->IdEmpl = \request('order-idempl');
+
+        $order->IdCust = \request('order-idcust');
+
+        $order->DateOrder = \request('order-date');
+
+        $order->save();
+
+        return redirect('/orders');
+    }
 }

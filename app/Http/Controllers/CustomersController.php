@@ -13,4 +13,20 @@ class CustomersController extends Controller {
             'customers' => $customers,
         ]);
     }
+
+    public function create() {
+        return view('customers/create');
+    }
+
+    public function store() {
+        $customer = new Customer();
+
+        $customer->FullNameCustomer = \request('cust-name');
+
+        $customer->PhoneNumberCustomer = \request('cust-number');
+
+        $customer->save();
+
+        return redirect('/customers');
+    }
 }

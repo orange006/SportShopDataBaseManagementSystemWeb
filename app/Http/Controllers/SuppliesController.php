@@ -13,4 +13,20 @@ class SuppliesController extends Controller {
             'supplies' => $supplies,
         ]);
     }
+
+    public function create() {
+        return view('supplies/create');
+    }
+
+    public function store() {
+        $supply = new Supply();
+
+        $supply->IdProv = \request('suppl-idprov');
+
+        $supply->DateSupply = \request('suppl-date');
+
+        $supply->save();
+
+        return redirect('/supplies');
+    }
 }

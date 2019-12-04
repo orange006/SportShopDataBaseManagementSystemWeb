@@ -13,4 +13,22 @@ class ProvidersController extends Controller {
             'providers' => $providers,
         ]);
     }
+
+    public function create() {
+        return view('providers/create');
+    }
+
+    public function store() {
+        $provider = new Provider();
+
+        $provider->NameProvider = \request('prov-name');
+
+        $provider->Representative = \request('prov-representative');
+
+        $provider->PhoneNumberProvider = \request('prov-number');
+
+        $provider->save();
+
+        return redirect('/providers');
+    }
 }
