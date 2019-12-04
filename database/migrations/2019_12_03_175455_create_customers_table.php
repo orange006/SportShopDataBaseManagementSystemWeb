@@ -9,8 +9,8 @@ class CreateCustomersTable extends Migration {
         Schema::create('customers', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-            $table->string("FullNameCustomers", 100);
-            $table->string("PhoneNumberCustomers", 13);
+            $table->string("FullNameCustomer", 100);
+            $table->string("PhoneNumberCustomer", 13);
         });
     }
 

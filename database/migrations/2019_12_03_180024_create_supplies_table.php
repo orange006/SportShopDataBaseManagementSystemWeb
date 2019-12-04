@@ -10,7 +10,7 @@ class CreateSuppliesTable extends Migration {
             $table->bigIncrements('id');
             $table->timestamps();
             $table->unsignedBigInteger("IdProv");
-            $table->date("DateSupply");
+            $table->string("DateSupply", 11);
         });
     }
 

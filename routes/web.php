@@ -14,14 +14,14 @@ Route::get('/', "PagesController@home");
 
 Route::get('/about', "PagesController@about");
 
-Route::get('/employees', "PagesController@employees");
+Route::get('/employees', "EmployeesController@index");
 
-Route::get('/customers', "PagesController@customers");
+Route::get('/customers', "CustomersController@index");
 
-Route::get('/orders', "PagesController@orders");
+Route::get('/orders', "OrdersController@index");
 
-Route::get('/products', "PagesController@products");
+Route::get('/products', "ProductsController@index");
 
-Route::get('/supplies', "PagesController@supplies");
+Route::get('/supplies', "SuppliesController@index");
 
-Route::get('/providers', "PagesController@providers");
+Route::get('/providers', "ProvidersController@index");

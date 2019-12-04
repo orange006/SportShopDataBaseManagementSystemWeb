@@ -12,7 +12,7 @@ class CreateOrdersTable extends Migration {
             $table->unsignedBigInteger("IdProd");
             $table->unsignedBigInteger("IdEmpl");
             $table->unsignedBigInteger("IdCust");
-            $table->date("DateOrder");
+            $table->string("DateOrder", 11);
         });
     }
 

@@ -7,14 +7,18 @@
 @section("page-content")
     <table>
         <tr>
+            <th>id</th>
             <th>Назва</th>
             <th>Представник</th>
             <th>Номер телефону</th>
         </tr>
-        <tr>
-            <td>Best Sneakers</td>
-            <td>Карлович Дмитро Григорович</td>
-            <td>0964447676</td>
-        </tr>
+        @foreach ($providers as $provider)
+            <tr>
+                <td>{{ $provider->id }}</td>
+                <td>{{ $provider->NameProvider }}</td>
+                <td>{{ $provider->Representative }}</td>
+                <td>{{ $provider->PhoneNumberProvider }}</td>
+            </tr>
+        @endforeach
     </table>
 @endsection

@@ -7,12 +7,16 @@
 @section("page-content")
     <table>
         <tr>
+            <th>id</th>
             <th>Повне ім'я</th>
             <th>Номер телефону</th>
         </tr>
-        <tr>
-            <td>Єфімов Олексій Ігорович</td>
-            <td>0987654321</td>
-        </tr>
+        @foreach ($customers as $customer)
+            <tr>
+                <td>{{ $customer->id }}</td>
+                <td>{{ $customer->FullNameCustomer}}</td>
+                <td>{{ $customer->PhoneNumberCustomer }}</td>
+            </tr>
+        @endforeach
     </table>
 @endsection
