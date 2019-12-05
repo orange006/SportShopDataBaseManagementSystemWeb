@@ -20,6 +20,7 @@
                         <th scope="col">Ціна продажу</th>
                         <th scope="col">Наявність</th>
                         <th scope="col">Кількість</th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -33,6 +34,7 @@
                             <td>{{ $product->CostSale }}</td>
                             <td>{{ $product->Availability }}</td>
                             <td>{{ $product->Quantity }}</td>
+                            <td><a href="/products/{{ $product->id }}/edit" class="btn btn-outline-primary">Редагувати</a></td>
                         </tr>
                     @endforeach
                 </tbody>

@@ -15,6 +15,7 @@
                         <th scope="col">id</th>
                         <th scope="col">Повне ім'я</th>
                         <th scope="col">Номер телефону</th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -23,6 +24,7 @@
                             <td>{{ $customer->id }}</td>
                             <td>{{ $customer->FullNameCustomer}}</td>
                             <td>{{ $customer->PhoneNumberCustomer }}</td>
+                            <td><a href="/customers/{{ $customer->id }}/edit" class="btn btn-outline-primary">Редагувати</a></td>
                         </tr>
                     @endforeach
                 </tbody>

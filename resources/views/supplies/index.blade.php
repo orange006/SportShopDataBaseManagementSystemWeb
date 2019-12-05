@@ -15,6 +15,7 @@
                         <th scope="col">id</th>
                         <th scope="col">idProv</th>
                         <th scope="col">Дата</th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -23,6 +24,7 @@
                             <td>{{ $supply->id }}</td>
                             <td>{{ $supply->IdProv }}</td>
                             <td>{{ $supply->DateSupply }}</td>
+                            <td><a href="/supplies/{{ $supply->id }}/edit" class="btn btn-outline-primary">Редагувати</a></td>
                         </tr>
                     @endforeach
                 </tbody>

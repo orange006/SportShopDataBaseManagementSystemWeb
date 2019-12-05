@@ -17,6 +17,7 @@
                         <th scope="col">IdEmpl</th>
                         <th scope="col">IdCust</th>
                         <th scope="col">Date Order</th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,6 +28,7 @@
                             <td>{{ $order->IdEmpl }}</td>
                             <td>{{ $order->IdCust }}</td>
                             <td>{{ $order->DateOrder }}</td>
+                            <td><a href="/orders/{{ $order->id }}/edit" class="btn btn-outline-primary">Редагувати</a></td>
                         </tr>
                     @endforeach
                 </tbody>

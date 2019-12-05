@@ -33,4 +33,28 @@ class OrdersController extends Controller {
 
         return redirect('/orders');
     }
+
+    public function edit($id) {
+        $order = Order::find($id);
+
+        return view('orders/edit', [
+            'order' => $order,
+        ]);
+    }
+
+    public function update($id) {
+        $order = Order::find($id);
+
+        $order->IdProd = \request('order-idprod');
+
+        $order->IdEmpl = \request('order-idempl');
+
+        $order->IdCust = \request('order-idcust');
+
+        $order->DateOrder = \request('order-date');
+
+        $order->save();
+
+        return redirect('/orders');
+    }
 }

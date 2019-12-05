@@ -31,4 +31,26 @@ class ProvidersController extends Controller {
 
         return redirect('/providers');
     }
+
+    public function edit($id) {
+        $provider = Provider::find($id);
+
+        return view('providers/edit', [
+            'provider' => $provider,
+        ]);
+    }
+
+    public function update($id) {
+        $provider = Provider::find($id);
+
+        $provider->NameProvider = \request('prov-name');
+
+        $provider->Representative = \request('prov-representative');
+
+        $provider->PhoneNumberProvider = \request('prov-number');
+
+        $provider->save();
+
+        return redirect('/providers');
+    }
 }

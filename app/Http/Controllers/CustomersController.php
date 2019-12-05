@@ -29,4 +29,24 @@ class CustomersController extends Controller {
 
         return redirect('/customers');
     }
+
+    public function edit($id) {
+        $customer = Customer::find($id);
+
+        return view('customers/edit', [
+            'customer' => $customer,
+        ]);
+    }
+
+    public function update($id) {
+        $customer = Customer::find($id);
+
+        $customer->FullNameCustomer = \request('cust-name');
+
+        $customer->PhoneNumberCustomer = \request('cust-number');
+
+        $customer->save();
+
+        return redirect('/customers');
+    }
 }

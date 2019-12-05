@@ -29,4 +29,24 @@ class SuppliesController extends Controller {
 
         return redirect('/supplies');
     }
+
+    public function edit($id) {
+        $supply = Supply::find($id);
+
+        return view('supplies/edit', [
+            'supply' => $supply,
+        ]);
+    }
+
+    public function update($id) {
+        $supply = Supply::find($id);
+
+        $supply->IdProv = \request('suppl-idprov');
+
+        $supply->DateSupply = \request('suppl-date');
+
+        $supply->save();
+
+        return redirect('/supplies');
+    }
 }

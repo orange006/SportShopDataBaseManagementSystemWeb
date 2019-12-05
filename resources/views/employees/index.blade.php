@@ -17,6 +17,7 @@
                         <th scope="col">Посада</th>
                         <th scope="col">Вік</th>
                         <th scope="col">Номер телефону</th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,6 +28,7 @@
                             <td>{{ $employee->Position }}</td>
                             <td>{{ $employee->Age }}</td>
                             <td>{{ $employee->PhoneNumberEmployee }}</td>
+                            <td><a href="/employees/{{ $employee->id }}/edit" class="btn btn-outline-primary">Редагувати</a></td>
                         </tr>
                     @endforeach
                 </tbody>
