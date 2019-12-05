@@ -11,27 +11,63 @@
         {{ method_field("patch") }}
 
         <div class="form-group">
-            <label for="order-idprod">Id продукта</label>
-            <input type="text" class="form-control" name="IdProd" id="order-idprod"
-                   placeholder="Введіть id продукта" value="{{ $order->IdProd }}">
+            <label for="IdProd">Id продукта</label>
+            <input type="text" class="form-control {{ $errors->has('IdProd') ? 'is-invalid':'' }}"
+                   value="{{ old('IdProd') ? old('IdProd') : $order->IdProd }}"
+                   name="IdProd" id="order-idprod" placeholder="Введіть id продукта">
+
+            <small class="form-text text-danger">
+                <ul>
+                    @foreach($errors->get('IdProd') as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </small>
         </div>
 
         <div class="form-group">
-            <label for="order-idempl">Id працівника</label>
-            <input type="text" class="form-control" name="IdEmpl" id="order-idempl"
-                   placeholder="Введіть id працівника" value="{{ $order->IdEmpl }}">
+            <label for="IdEmpl">Id працівника</label>
+            <input type="text" class="form-control {{ $errors->has('IdEmpl') ? 'is-invalid':'' }}"
+                   value="{{ old('IdEmpl') ? old('IdEmpl') : $order->IdProd }}"
+                   name="IdEmpl" id="order-idempl" placeholder="Введіть id працівника">
+
+            <small class="form-text text-danger">
+                <ul>
+                    @foreach($errors->get('IdEmpl') as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </small>
         </div>
 
         <div class="form-group">
-            <label for="order-idcust">Id клієнта</label>
-            <input type="text" class="form-control" name="IdCust" id="order-idcust"
-                   placeholder="Введіть id клієнта" value="{{ $order->IdCust }}">
+            <label for="IdEmpl">Id клієнта</label>
+            <input type="text" class="form-control {{ $errors->has('IdCust') ? 'is-invalid':'' }}"
+                   value="{{ old('IdCust') ? old('IdCust') : $order->IdCust }}"
+                   name="IdCust" id="order-idcust" placeholder="Введіть id клієнта">
+
+            <small class="form-text text-danger">
+                <ul>
+                    @foreach($errors->get('IdCust') as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </small>
         </div>
 
         <div class="form-group">
-            <label for="order-date">Дата замовлення</label>
-            <input type="text" class="form-control" name="DateOrder" id="order-date"
-                   placeholder="Введіть дату замовлення" value="{{ $order->DateOrder }}">
+            <label for="DateOrder">Дата замовлення</label>
+            <input type="text" class="form-control {{ $errors->has('DateOrder') ? 'is-invalid':'' }}"
+                   value="{{ old('DateOrder') ? old('DateOrder') : $order->IdCust }}"
+                   name="DateOrder" id="order-date" placeholder="Введіть дату замовлення">
+
+            <small class="form-text text-danger">
+                <ul>
+                    @foreach($errors->get('DateOrder') as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </small>
         </div>
 
         <button type="submit" class="btn btn-primary float-right">Змінити</button>

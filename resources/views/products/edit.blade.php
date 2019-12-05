@@ -11,45 +11,108 @@
         {{ method_field("patch") }}
 
         <div class="form-group">
-            <label for="prod-idsuppl">Id поставки</label>
-            <input type="text" class="form-control" name="IdSuppl" id="prod-idsuppl"
-                   placeholder="Введіть id поставки" value="{{ $product->IdSuppl }}">
+            <label for="IdSuppl">Id поставки</label>
+            <input type="text" class="form-control {{ $errors->has('IdSuppl') ? 'is-invalid':'' }}"
+                   value="{{ old('IdSuppl') ? old('IdSuppl') : $product->IdSuppl }}"
+                   name="IdSuppl" id="prod-idsuppl" placeholder="Введіть id поставки">
+
+            <small class="form-text text-danger">
+                <ul>
+                    @foreach($errors->get('IdSuppl') as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </small>
         </div>
 
         <div class="form-group">
-            <label for="prod-name">Назва</label>
-            <input type="text" class="form-control" name="NameProduct" id="prod-name"
-                   placeholder="Введіть назву продукту" value="{{ $product->NameProduct }}">
+            <label for="NameProduct">Назва</label>
+            <input type="text" class="form-control {{ $errors->has('NameProduct') ? 'is-invalid':'' }}"
+                   value="{{ old('NameProduct') ? old('NameProduct') : $product->NameProduct }}"
+                   name="NameProduct" id="prod-name" placeholder="Введіть назву продукту">
+
+            <small class="form-text text-danger">
+                <ul>
+                    @foreach($errors->get('NameProduct') as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </small>
         </div>
 
         <div class="form-group">
-            <label for="prod-type">Тип</label>
-            <input type="text" class="form-control" name="TypeProduct" id="prod-type"
-                   placeholder="Введіть тип продукту" value="{{ $product->TypeProduct }}">
+            <label for="TypeProduct">Тип</label>
+            <input type="text" class="form-control {{ $errors->has('TypeProduct') ? 'is-invalid':'' }}"
+                   value="{{ old('TypeProduct') ? old('TypeProduct') : $product->TypeProduct }}"
+                   name="TypeProduct" id="prod-type" placeholder="Введіть тип продукту">
+
+            <small class="form-text text-danger">
+                <ul>
+                    @foreach($errors->get('TypeProduct') as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </small>
         </div>
 
         <div class="form-group">
-            <label for="prod-purchase">Вартість придбання</label>
-            <input type="text" class="form-control" name="CostPurchase" id="prod-purchase"
-                   placeholder="Введіть вартість придбання" value="{{ $product->CostPurchase }}">
+            <label for="CostPurchase">Вартість придбання</label>
+            <input type="text" class="form-control {{ $errors->has('CostPurchase') ? 'is-invalid':'' }}"
+                   value="{{ old('CostPurchase') ? old('CostPurchase') : $product->CostPurchase }}"
+                   name="CostPurchase" id="prod-purchase" placeholder="Введіть вартість придбання">
+
+            <small class="form-text text-danger">
+                <ul>
+                    @foreach($errors->get('CostPurchase') as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </small>
         </div>
 
         <div class="form-group">
-            <label for="prod-sale">Вартість продажу</label>
-            <input type="text" class="form-control" name="CostSale" id="prod-sale"
-                   placeholder="Введіть вартість продажу" value="{{ $product->CostSale }}">
+            <label for="CostSale">Вартість продажу</label>
+            <input type="text" class="form-control {{ $errors->has('CostSale') ? 'is-invalid':'' }}"
+                   value="{{ old('CostSale') ? old('CostSale') : $product->CostSale }}"
+                   name="CostSale" id="prod-sale" placeholder="Введіть вартість продажу">
+
+            <small class="form-text text-danger">
+                <ul>
+                    @foreach($errors->get('CostSale') as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </small>
         </div>
 
         <div class="form-group">
-            <label for="prod-availability">Наявність</label>
-            <input type="text" class="form-control" name="Availability" id="prod-availability"
-                   placeholder="Вкажіть наявність" value="{{ $product->Availability }}">
+            <label for="Availability">Наявність</label>
+            <input type="text" class="form-control {{ $errors->has('Availability') ? 'is-invalid':'' }}"
+                   value="{{ old('Availability') ? old('Availability') : $product->Availability }}"
+                   name="Availability" id="prod-availability" placeholder="Вкажіть наявність">
+
+            <small class="form-text text-danger">
+                <ul>
+                    @foreach($errors->get('Availability') as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </small>
         </div>
 
         <div class="form-group">
-            <label for="prod-quantity">Кількість</label>
-            <input type="text" class="form-control" name="pQuantity" id="prod-quantity"
-                   placeholder="Введіть кількість" value="{{ $product->Quantity }}">
+            <label for="Quantity">Кількість</label>
+            <input type="text" class="form-control {{ $errors->has('Quantity') ? 'is-invalid':'' }}"
+                   value="{{ old('Quantity') ? old('Quantity') : $product->Quantity }}"
+                   name="Quantity" id="prod-quantity" placeholder="Введіть кількість">
+
+            <small class="form-text text-danger">
+                <ul>
+                    @foreach($errors->get('Quantity') as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </small>
         </div>
 
         <button type="submit" class="btn btn-primary float-right">Змінити</button>

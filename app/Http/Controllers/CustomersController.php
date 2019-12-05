@@ -19,9 +19,20 @@ class CustomersController extends Controller {
     }
 
     public function store() {
+        $data = \request()->validate([
+            'cust-name' => 'required|max:100',
+            'cust-number' => 'required|min:10|max:13',
+        ], [
+            'cust-name.required' => 'ПІБ клієнта має бути заповнено!',
+            'cust-name.max' => 'Довжина ПІБ клієнта не може перевищувати 100 символів!',
+            'cust-number.required' => 'Номер телефону має бути заповнено!',
+            'cust-number.max' => 'Довжина номеру телефону клієнта не може перевищувати 13 символів!',
+            'cust-number.min' => 'Довжина номеру телефону клієнта має бути не менше 10 символів!',
+        ]);
+
         Customer::create([
-            'FullNameCustomer' => \request('cust-name'),
-            'PhoneNumberCustomer' => \request('cust-number'),
+            'FullNameCustomer' => $data['cust-name'],
+            'PhoneNumberCustomer' => $data['cust-number'],
         ]);
 
         return redirect('/customers');
@@ -35,10 +46,17 @@ class CustomersController extends Controller {
 
     public function update(Customer $customer) {
         $customer->update(
-            \request(['FullNameCustomer', 'PhoneNumberCustomer'])
+            \request()->validate([
+                'FullNameCustomer' => 'required|max:100',
+                'PhoneNumberCustomer' => 'required|min:10|max:13',
+            ], [
+                'FullNameCustomer.required' => 'ПІБ клієнта має бути заповнено!',
+                'FullNameCustomer.max' => 'Довжина ПІБ клієнта не може перевищувати 100 символів!',
+                'PhoneNumberCustomer.required' => 'Номер телефону має бути заповнено!',
+                'PhoneNumberCustomer.max' => 'Довжина номеру телефону клієнта не може перевищувати 13 символів!',
+                'PhoneNumberCustomer.min' => 'Довжина номеру телефону клієнта має бути не менше 10 символів!',
+            ])
         );
-
-        $customer->save();
 
         return redirect('/customers');
     }

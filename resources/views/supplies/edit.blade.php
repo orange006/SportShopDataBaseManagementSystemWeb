@@ -11,15 +11,33 @@
         {{ method_field("patch") }}
 
         <div class="form-group">
-            <label for="suppl-idprov">Id постачальника</label>
-            <input type="text" class="form-control" name="IdProv" id="suppl-idprov"
-                   placeholder="Введіть id постачальника" value="{{ $supply->IdProv }}">
+            <label for="IdProv">Id постачальника</label>
+            <input type="text" class="form-control {{ $errors->has('IdProv') ? 'is-invalid':'' }}"
+                   value="{{ old('IdProv') ? old('IdProv') : $supply->IdProv }}"
+                   name="IdProv" id="suppl-idprov" placeholder="Введіть id постачальника">
+
+            <small class="form-text text-danger">
+                <ul>
+                    @foreach($errors->get('IdProv') as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </small>
         </div>
 
         <div class="form-group">
-            <label for="suppl-date">Дата</label>
-            <input type="text" class="form-control" name="DateSupply" id="suppl-date"
-                   placeholder="Введіть дату поставки" value="{{ $supply->DateSupply }}">
+            <label for="DateSupply">Дата</label>
+            <input type="text" class="form-control {{ $errors->has('DateSupply') ? 'is-invalid':'' }}"
+                   value="{{ old('DateSupply') ? old('DateSupply') : $supply->IdProv }}"
+                   name="DateSupply" id="suppl-date" placeholder="Введіть дату поставки" value="{{ $supply->DateSupply }}">
+
+            <small class="form-text text-danger">
+                <ul>
+                    @foreach($errors->get('DateSupply') as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </small>
         </div>
 
         <button type="submit" class="btn btn-primary float-right">Змінити</button>

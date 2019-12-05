@@ -19,9 +19,17 @@ class SuppliesController extends Controller {
     }
 
     public function store() {
+        $data = \request()->validate([
+            'suppl-idprov' => 'required',
+            'suppl-date' => 'required',
+        ], [
+            'suppl-idprov.required' => 'Id постачальника має бути заповнений!',
+            'suppl-date.required' => 'Дата поставки має бути заповненою!',
+        ]);
+
         Supply::create([
-            'IdProv' => \request('suppl-idprov'),
-            'DateSupply' => \request('suppl-date'),
+            'IdProv' => $data['suppl-idprov'],
+            'DateSupply' => $data['suppl-date'],
         ]);
 
         return redirect('/supplies');
@@ -35,10 +43,14 @@ class SuppliesController extends Controller {
 
     public function update(Supply $supply) {
         $supply->update(
-            \request(['IdProv', 'DateSupply'])
+            \request()->validate([
+                'IdProv' => 'required',
+                'DateSupply' => 'required',
+            ], [
+                'IdProv.required' => 'Id постачальника має бути заповнений!',
+                'DateSupply.required' => 'Дата поставки має бути заповненою!',
+            ])
         );
-
-        $supply->save();
 
         return redirect('/supplies');
     }

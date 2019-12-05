@@ -11,15 +11,33 @@
         {{ method_field("patch") }}
 
         <div class="form-group">
-            <label for="cust-name">ПІБ</label>
-            <input type="text" class="form-control" name="FullNameCustomer" id="cust-name"
-                   placeholder="Введіть ПІБ" value="{{ $customer->FullNameCustomer }}">
+            <label for="FullNameCustomer">ПІБ</label>
+            <input type="text" class="form-control {{ $errors->has('FullNameCustomer') ? 'is-invalid':'' }}"
+                   value="{{ old('FullNameCustomer') ? old('FullNameCustomer') : $customer->FullNameCustomer }}"
+                   name="FullNameCustomer" id="cust-name" placeholder="Введіть ПІБ">
+
+            <small class="form-text text-danger">
+                <ul>
+                    @foreach($errors->get('FullNameCustomer') as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </small>
         </div>
 
         <div class="form-group">
-            <label for="cust-number">Номер телефону</label>
-            <input type="text" class="form-control" name="PhoneNumberCustomer" id="cust-number"
-                   placeholder="Введіть номер телефону" value="{{ $customer->PhoneNumberCustomer }}">
+            <label for="PhoneNumberCustomer">Номер телефону</label>
+            <input type="text" class="form-control {{ $errors->has('PhoneNumberCustomer') ? 'is-invalid':'' }}"
+                   value="{{ old('PhoneNumberCustomer') ? old('PhoneNumberCustomer') : $customer->PhoneNumberCustomer }}"
+                   name="PhoneNumberCustomer" id="cust-number" placeholder="Введіть номер телефону">
+
+            <small class="form-text text-danger">
+                <ul>
+                    @foreach($errors->get('PhoneNumberCustomer') as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </small>
         </div>
 
         <button type="submit" class="btn btn-primary float-right">Змінити</button>

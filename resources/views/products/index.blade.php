@@ -28,7 +28,7 @@
                         <tr>
                             <td>{{ $product->id }}</td>
                             <td>{{ $product->IdSuppl }}</td>
-                            <td>{{ $product->NameProducts }}</td>
+                            <td>{{ $product->NameProduct }}</td>
                             <td>{{ $product->TypeProduct }}</td>
                             <td>{{ $product->CostPurchase }}</td>
                             <td>{{ $product->CostSale }}</td>

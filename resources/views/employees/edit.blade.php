@@ -11,27 +11,63 @@
         {{ method_field("patch") }}
 
         <div class="form-group">
-            <label for="empl-name">ПІБ</label>
-            <input type="text" class="form-control" name="FullNameEmployee" id="empl-name"
-                   placeholder="Введіть ПІБ" value="{{ $employee->FullNameEmployee }}">
+            <label for="FullNameEmployee">ПІБ</label>
+            <input type="text" class="form-control {{ $errors->has('FullNameEmployee') ? 'is-invalid':'' }}"
+                   value="{{ old('FullNameEmployee') ? old('FullNameEmployee') : $employee->FullNameEmployee }}"
+                   name="FullNameEmployee" id="empl-name" placeholder="Введіть ПІБ">
+
+            <small class="form-text text-danger">
+                <ul>
+                    @foreach($errors->get('FullNameEmployee') as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </small>
         </div>
 
         <div class="form-group">
-            <label for="">Посада</label>
-            <input type="text" class="form-control" name="Position" id="empl-position"
-                   placeholder="Введіть посаду" value="{{ $employee->Position }}">
+            <label for="Position">Посада</label>
+            <input type="text" class="form-control {{ $errors->has('Position') ? 'is-invalid':'' }}"
+                   value="{{ old('Position') ? old('Position') : $employee->Position }}"
+                   name="Position" id="empl-position" placeholder="Введіть посаду">
+
+            <small class="form-text text-danger">
+                <ul>
+                    @foreach($errors->get('Position') as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </small>
         </div>
 
         <div class="form-group">
-            <label for="">Вік</label>
-            <input type="text" class="form-control" name="Age" id="empl-age"
-                   placeholder="Введіть вік" value="{{ $employee->Age }}">
+            <label for="Age">Вік</label>
+            <input type="text" class="form-control {{ $errors->has('Age') ? 'is-invalid':'' }}"
+                   value="{{ old('Age') ? old('Age') : $employee->Age }}"
+                   name="Age" id="empl-age" placeholder="Введіть вік">
+
+            <small class="form-text text-danger">
+                <ul>
+                    @foreach($errors->get('Age') as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </small>
         </div>
 
         <div class="form-group">
-            <label for="empl-number">Номер телефону</label>
-            <input type="text" class="form-control" name="PhoneNumberEmployee" id="empl-number"
-                   placeholder="Введіть номер телефону" value="{{ $employee->PhoneNumberEmployee }}">
+            <label for="PhoneNumberEmployee">Номер телефону</label>
+            <input type="text" class="form-control {{ $errors->has('PhoneNumberEmployee') ? 'is-invalid':'' }}"
+                   value="{{ old('PhoneNumberEmployee') ? old('PhoneNumberEmployee') : $employee->PhoneNumberEmployee }}"
+                   name="PhoneNumberEmployee" id="empl-number" placeholder="Введіть номер телефону">
+
+            <small class="form-text text-danger">
+                <ul>
+                    @foreach($errors->get('PhoneNumberEmployee') as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </small>
         </div>
 
         <button type="submit" class="btn btn-primary float-right">Змінити</button>
