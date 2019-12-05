@@ -19,42 +19,39 @@ class OrdersController extends Controller {
     }
 
     public function store() {
-        $order = new Order();
-
-        $order->IdProd = \request('order-idprod');
-
-        $order->IdEmpl = \request('order-idempl');
-
-        $order->IdCust = \request('order-idcust');
-
-        $order->DateOrder = \request('order-date');
-
-        $order->save();
+        Order::create([
+            'IdProd' => \request('order-idprod'),
+            'IdEmpl' => \request('order-idempl'),
+            'IdCust' => \request('order-idcust'),
+            'DateOrder' => \request('order-date'),
+        ]);
 
         return redirect('/orders');
     }
 
-    public function edit($id) {
-        $order = Order::find($id);
-
+    public function edit(Order $order) {
         return view('orders/edit', [
             'order' => $order,
         ]);
     }
 
-    public function update($id) {
-        $order = Order::find($id);
-
-        $order->IdProd = \request('order-idprod');
-
-        $order->IdEmpl = \request('order-idempl');
-
-        $order->IdCust = \request('order-idcust');
-
-        $order->DateOrder = \request('order-date');
+    public function update(Order $order) {
+        $order->update(
+            \request(['IdProd', 'IdEmpl', 'IdCust', 'DateOrder'])
+        );
 
         $order->save();
 
         return redirect('/orders');
+    }
+
+    public function destroy(Order $order) {
+        $order->delete();
+    }
+
+    public function show(Order $order) {
+        return view('orders/show', [
+            'order' => $order
+        ]);
     }
 }

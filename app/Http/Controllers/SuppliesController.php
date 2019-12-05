@@ -19,34 +19,37 @@ class SuppliesController extends Controller {
     }
 
     public function store() {
-        $supply = new Supply();
-
-        $supply->IdProv = \request('suppl-idprov');
-
-        $supply->DateSupply = \request('suppl-date');
-
-        $supply->save();
+        Supply::create([
+            'IdProv' => \request('suppl-idprov'),
+            'DateSupply' => \request('suppl-date'),
+        ]);
 
         return redirect('/supplies');
     }
 
-    public function edit($id) {
-        $supply = Supply::find($id);
-
+    public function edit(Supply $supply) {
         return view('supplies/edit', [
             'supply' => $supply,
         ]);
     }
 
-    public function update($id) {
-        $supply = Supply::find($id);
-
-        $supply->IdProv = \request('suppl-idprov');
-
-        $supply->DateSupply = \request('suppl-date');
+    public function update(Supply $supply) {
+        $supply->update(
+            \request(['IdProv', 'DateSupply'])
+        );
 
         $supply->save();
 
         return redirect('/supplies');
+    }
+
+    public function destroy(Supply $supply) {
+        $supply->delete();
+    }
+
+    public function show(Supply $supply) {
+        return view('supplies/show', [
+            'supply' => $supply
+        ]);
     }
 }

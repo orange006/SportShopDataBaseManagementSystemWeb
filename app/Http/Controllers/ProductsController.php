@@ -19,54 +19,42 @@ class ProductsController extends Controller {
     }
 
     public function store() {
-        $product = new Product();
-
-        $product->IdSuppl = \request('prod-idsuppl');
-
-        $product->NameProduct = \request('prod-name');
-
-        $product->TypeProduct = \request('prod-type');
-
-        $product->CostPurchase = \request('prod-purchase');
-
-        $product->CostSale = \request('prod-sale');
-
-        $product->Availability = \request('prod-availability');
-
-        $product->Quantity = \request('prod-quantity');
-
-        $product->save();
+        Product::create([
+            'IdSuppl' => \request('prod-idsuppl'),
+            'NameProduct' => \request('prod-name'),
+            'TypeProduct' => \request('prod-type'),
+            'CostPurchase' => \request('prod-purchase'),
+            'CostSale' => \request('prod-sale'),
+            'Availability' => \request('prod-availability'),
+            'Quantity' => \request('prod-quantity'),
+        ]);
 
         return redirect('/products');
     }
 
-    public function edit($id) {
-        $product = Product::find($id);
-
+    public function edit(Product $product) {
         return view('products/edit', [
             'product' => $product,
         ]);
     }
 
-    public function update($id) {
-        $product = Product::find($id);
-
-        $product->IdSuppl = \request('prod-idsuppl');
-
-        $product->NameProduct = \request('prod-name');
-
-        $product->TypeProduct = \request('prod-type');
-
-        $product->CostPurchase = \request('prod-purchase');
-
-        $product->CostSale = \request('prod-sale');
-
-        $product->Availability = \request('prod-availability');
-
-        $product->Quantity = \request('prod-quantity');
+    public function update(Product $product) {
+        $product->update(
+            \request(['IdSuppl', 'NameProduct', 'TypeProduct', 'CostPurchase', 'CostSale', 'Availability', 'Quantity'])
+        );
 
         $product->save();
 
         return redirect('/products');
+    }
+
+    public function destroy(Product $product) {
+        $product->delete();
+    }
+
+    public function show(Product $product) {
+        return view('products/show', [
+            'product' => $product
+        ]);
     }
 }

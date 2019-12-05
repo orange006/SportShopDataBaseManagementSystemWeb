@@ -24,7 +24,10 @@
                             <td>{{ $customer->id }}</td>
                             <td>{{ $customer->FullNameCustomer}}</td>
                             <td>{{ $customer->PhoneNumberCustomer }}</td>
-                            <td><a href="/customers/{{ $customer->id }}/edit" class="btn btn-outline-primary">Редагувати</a></td>
+                            <td>
+                                <a href="/customers/{{ $customer->id }}" class="btn btn-outline-secondary">Переглянути</a>
+                                <a href="/customers/{{ $customer->id }}/edit" class="btn btn-outline-primary">Редагувати</a>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

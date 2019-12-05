@@ -28,7 +28,10 @@
                             <td>{{ $order->IdEmpl }}</td>
                             <td>{{ $order->IdCust }}</td>
                             <td>{{ $order->DateOrder }}</td>
-                            <td><a href="/orders/{{ $order->id }}/edit" class="btn btn-outline-primary">Редагувати</a></td>
+                            <td>
+                                <a href="/orders/{{ $order->id }}" class="btn btn-outline-secondary">Переглянути</a>
+                                <a href="/orders/{{ $order->id }}/edit" class="btn btn-outline-primary">Редагувати</a>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

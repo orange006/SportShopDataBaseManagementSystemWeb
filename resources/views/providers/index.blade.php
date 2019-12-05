@@ -26,7 +26,10 @@
                             <td>{{ $provider->NameProvider }}</td>
                             <td>{{ $provider->Representative }}</td>
                             <td>{{ $provider->PhoneNumberProvider }}</td>
-                            <td><a href="/providers/{{ $provider->id }}/edit" class="btn btn-outline-primary">Редагувати</a></td>
+                            <td>
+                                <a href="/providers/{{ $provider->id }}" class="btn btn-outline-secondary">Переглянути</a>
+                                <a href="/providers/{{ $provider->id }}/edit" class="btn btn-outline-primary">Редагувати</a>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

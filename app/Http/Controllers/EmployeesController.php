@@ -19,42 +19,39 @@ class EmployeesController extends Controller {
     }
 
     public function store() {
-        $employee = new Employee();
-
-        $employee->FullNameEmployee = \request('empl-name');
-
-        $employee->Position = \request('empl-position');
-
-        $employee->Age = \request('empl-age');
-
-        $employee->PhoneNumberEmployee = \request('empl-number');
-
-        $employee->save();
+        Employee::create([
+            'FullNameEmployee' => \request('empl-name'),
+            'Position' => \request('empl-position'),
+            'Age' => \request('empl-age'),
+            'PhoneNumberEmployee' => \request('empl-number'),
+        ]);
 
         return redirect('/employees');
     }
 
-    public function edit($id) {
-        $employee = Employee::find($id);
-
+    public function edit(Employee $employee) {
         return view('employees/edit', [
             'employee' => $employee,
         ]);
     }
 
-    public function update($id) {
-        $employee = Employee::find($id);
-
-        $employee->FullNameEmployee = \request('empl-name');
-
-        $employee->Position = \request('empl-position');
-
-        $employee->Age = \request('empl-age');
-
-        $employee->PhoneNumberEmployee = \request('empl-number');
+    public function update(Employee $employee) {
+        $employee->update(
+            \request(['FullNameEmployee', 'Position', 'Age', 'PhoneNumberEmployee'])
+        );
 
         $employee->save();
 
         return redirect('/employees');
+    }
+
+    public function destroy(Employee $employee) {
+        $employee->delete();
+    }
+
+    public function show(Employee $employee) {
+        return view('employees/show', [
+            'employee' => $employee
+        ]);
     }
 }

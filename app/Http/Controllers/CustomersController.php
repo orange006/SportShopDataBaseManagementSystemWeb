@@ -19,34 +19,37 @@ class CustomersController extends Controller {
     }
 
     public function store() {
-        $customer = new Customer();
-
-        $customer->FullNameCustomer = \request('cust-name');
-
-        $customer->PhoneNumberCustomer = \request('cust-number');
-
-        $customer->save();
+        Customer::create([
+            'FullNameCustomer' => \request('cust-name'),
+            'PhoneNumberCustomer' => \request('cust-number'),
+        ]);
 
         return redirect('/customers');
     }
 
-    public function edit($id) {
-        $customer = Customer::find($id);
-
+    public function edit(Customer $customer) {
         return view('customers/edit', [
             'customer' => $customer,
         ]);
     }
 
-    public function update($id) {
-        $customer = Customer::find($id);
-
-        $customer->FullNameCustomer = \request('cust-name');
-
-        $customer->PhoneNumberCustomer = \request('cust-number');
+    public function update(Customer $customer) {
+        $customer->update(
+            \request(['FullNameCustomer', 'PhoneNumberCustomer'])
+        );
 
         $customer->save();
 
         return redirect('/customers');
+    }
+
+    public function destroy(Customer $customer) {
+        $customer->delete();
+    }
+
+    public function show(Customer $customer) {
+        return view('customers/show', [
+            'customer' => $customer
+        ]);
     }
 }

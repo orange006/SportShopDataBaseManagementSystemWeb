@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Provider;
+use App\Supply;
 use Illuminate\Http\Request;
 
 class ProvidersController extends Controller {
@@ -19,38 +20,38 @@ class ProvidersController extends Controller {
     }
 
     public function store() {
-        $provider = new Provider();
-
-        $provider->NameProvider = \request('prov-name');
-
-        $provider->Representative = \request('prov-representative');
-
-        $provider->PhoneNumberProvider = \request('prov-number');
-
-        $provider->save();
+        Provider::create([
+            'NameProvider' => \request('prov-name'),
+            'Representative' => \request('prov-representative'),
+            'PhoneNumberProvider' => \request('prov-number'),
+        ]);
 
         return redirect('/providers');
     }
 
-    public function edit($id) {
-        $provider = Provider::find($id);
-
+    public function edit(Provider $provider) {
         return view('providers/edit', [
             'provider' => $provider,
         ]);
     }
 
-    public function update($id) {
-        $provider = Provider::find($id);
-
-        $provider->NameProvider = \request('prov-name');
-
-        $provider->Representative = \request('prov-representative');
-
-        $provider->PhoneNumberProvider = \request('prov-number');
+    public function update(Provider $provider) {
+        $provider->update(
+            \request(['NameProvider', 'Representative', 'PhoneNumberProvider'])
+        );
 
         $provider->save();
 
         return redirect('/providers');
+    }
+
+    public function destroy(Provider $provider) {
+        $provider->delete();
+    }
+
+    public function show(Provider $provider) {
+        return view('providers/show', [
+            'provider' => $provider
+        ]);
     }
 }
