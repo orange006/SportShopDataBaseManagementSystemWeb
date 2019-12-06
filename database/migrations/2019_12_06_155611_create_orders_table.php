@@ -13,6 +13,18 @@ class CreateOrdersTable extends Migration {
             $table->unsignedBigInteger("IdEmpl");
             $table->unsignedBigInteger("IdCust");
             $table->string("DateOrder", 11);
+
+            $table->foreign('IdProd')
+                ->references('id')
+                ->on('products');
+
+            $table->foreign('IdEmpl')
+                ->references('id')
+                ->on('employees');
+
+            $table->foreign('IdCust')
+                ->references('id')
+                ->on('customers');
         });
     }
 

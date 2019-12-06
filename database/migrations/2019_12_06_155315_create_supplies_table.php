@@ -11,6 +11,10 @@ class CreateSuppliesTable extends Migration {
             $table->timestamps();
             $table->unsignedBigInteger("IdProv");
             $table->string("DateSupply", 11);
+
+            $table->foreign('IdProv')
+                ->references('id')
+                ->on('providers');
         });
     }
 

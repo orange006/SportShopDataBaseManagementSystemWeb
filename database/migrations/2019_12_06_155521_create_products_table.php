@@ -16,6 +16,10 @@ class CreateProductsTable extends Migration {
             $table->unsignedBigInteger("CostSale");
             $table->boolean("Availability");
             $table->unsignedBigInteger("Quantity");
+
+            $table->foreign('IdSuppl')
+                ->references('id')
+                ->on('supplies');
         });
     }
 
