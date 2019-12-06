@@ -21,13 +21,7 @@
                 @endforeach
             </select>
 
-            <small class="form-text text-danger">
-                <ul>
-                    @foreach($errors->get('IdProd') as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </small>
+            @include('includes/validationErr', ['errFieldName' => 'IdProd'])
         </div>
 
         <div class="form-group">
@@ -43,13 +37,7 @@
                 @endforeach
             </select>
 
-            <small class="form-text text-danger">
-                <ul>
-                    @foreach($errors->get('IdEmpl') as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </small>
+            @include('includes/validationErr', ['errFieldName' => 'IdEmpl'])
         </div>
 
         <div class="form-group">
@@ -65,27 +53,15 @@
                 @endforeach
             </select>
 
-            <small class="form-text text-danger">
-                <ul>
-                    @foreach($errors->get('IdCust') as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </small>
+            @include('includes/validationErr', ['errFieldName' => 'IdCust'])
         </div>
 
         <div class="form-group">
-            <label for="DateOrder">Дата замовлення</label>
-            <input type="text" class="form-control {{ $errors->has('DateOrder') ? 'is-invalid':'' }}" value="{{ old('DateOrder') }}"
-                   name="DateOrder" id="DateOrder" placeholder="Введіть дату замовлення">
-
-            <small class="form-text text-danger">
-                <ul>
-                    @foreach($errors->get('DateOrder') as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </small>
+            @include("includes/input", [
+                'fieldId' => 'DateOrder',
+                'labelText' => 'Дата замовлення',
+                'placeHolderText' => 'Введіть дату замовлення'
+            ])
         </div>
 
         <button type="submit" class="btn btn-primary float-right">Додати</button>

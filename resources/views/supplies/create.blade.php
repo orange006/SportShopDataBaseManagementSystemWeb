@@ -21,27 +21,15 @@
                 @endforeach
             </select>
 
-            <small class="form-text text-danger">
-                <ul>
-                    @foreach($errors->get('IdProv') as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </small>
+            @include('includes/validationErr', ['errFieldName' => 'IdProv'])
         </div>
 
         <div class="form-group">
-            <label for="DateSupply">Дата</label>
-            <input type="text" class="form-control {{ $errors->has('DateSupply') ? 'is-invalid':'' }}" value="{{ old('DateSupply') }}"
-                   name="DateSupply" id="DateSupply" placeholder="Введіть дату поставки">
-
-            <small class="form-text text-danger">
-                <ul>
-                    @foreach($errors->get('DateSupply') as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </small>
+            @include("includes/input", [
+                'fieldId' => 'DateSupply',
+                'labelText' => 'Дата',
+                'placeHolderText' => 'Введіть дату поставки'
+            ])
         </div>
 
         <button type="submit" class="btn btn-primary float-right">Додати</button>
