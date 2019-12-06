@@ -28,7 +28,7 @@
         <div class="form-group">
             <label for="DateSupply">Дата</label>
             <input type="text" class="form-control {{ $errors->has('DateSupply') ? 'is-invalid':'' }}"
-                   value="{{ old('DateSupply') ? old('DateSupply') : $supply->IdProv }}"
+                   value="{{ old('DateSupply') ? old('DateSupply') : $supply->DateSupply }}"
                    name="DateSupply" id="suppl-date" placeholder="Введіть дату поставки" value="{{ $supply->DateSupply }}">
 
             <small class="form-text text-danger">

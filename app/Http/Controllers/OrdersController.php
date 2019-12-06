@@ -2,41 +2,45 @@
 
 namespace App\Http\Controllers;
 
+use App\Customer;
+use App\Employee;
 use App\Order;
+use App\Product;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class OrdersController extends Controller {
     public function index() {
-        $orders = Order::all()->sortBy("id");
-
         return view('orders/index', [
-            'orders' => $orders,
+            'orders' => Order::all()->sortBy("id"),
         ]);
     }
 
     public function create() {
-        return view('orders/create');
+        return view('orders/create', [
+            'products' => Product::all()->sortBy('id'),
+            'employees' => Employee::all()->sortBy('id'),
+            'customers' => Customer::all()->sortBy('id'),
+        ]);
     }
 
-    public function store() {
-        $data = \request()->validate([
-            'order-idprod' => 'required',
-            'order-idempl' => 'required',
-            'order-idcust' => 'required',
-            'order-date' => 'required',
+    public function store(Request $request) {
+        $data = request()->validate([
+            'IdProd' => ['required', Rule::exists('products', 'id')],
+            'IdEmpl' => ['required', Rule::exists('employees', 'id')],
+            'IdCust' => ['required', Rule::exists('customers', 'id')],
+            'DateOrder' => 'required',
         ], [
-            'order-idprod.required' => 'Id продукту має бути заповнено!',
-            'order-idempl.required' => 'Id працівника має бути заповнено!',
-            'order-idcust.required' => 'Id клієнта має бути заповнено!',
-            'order-date.required' => 'Дата замовлення має бути заповненою!',
+            'IdProd.required' => 'Id продукту має бути заповнено!',
+            'IdProd.exists' => 'Оберіть продукт!',
+            'IdEmpl.required' => 'Id працівника має бути заповнено!',
+            'IdEmpl.exists' => 'Оберіть продукт!',
+            'IdCust.required' => 'Id клієнта має бути заповнено!',
+            'IdCust.exists' => 'Оберіть продукт!',
+            'DateOrder.required' => 'Дата замовлення має бути заповненою!',
         ]);
 
-        Order::create([
-            'IdProd' => $data['order-idprod'],
-            'IdEmpl' => $data['order-idempl'],
-            'IdCust' => $data['order-idcust'],
-            'DateOrder' => $data['order-date'],
-        ]);
+        Order::create($data);
 
         return redirect('/orders');
     }

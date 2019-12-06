@@ -2,35 +2,35 @@
 
 namespace App\Http\Controllers;
 
+use App\Provider;
 use App\Supply;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class SuppliesController extends Controller {
     public function index() {
-        $supplies = Supply::all()->sortBy("id");
-
         return view('supplies/index', [
-            'supplies' => $supplies,
+            'supplies' => Supply::all()->sortBy("id"),
         ]);
     }
 
     public function create() {
-        return view('supplies/create');
+        return view('supplies/create', [
+            'providers' => Provider::all()->sortBy('id')
+        ]);
     }
 
-    public function store() {
-        $data = \request()->validate([
-            'suppl-idprov' => 'required',
-            'suppl-date' => 'required',
+    public function store(Request $request) {
+        $data = request()->validate([
+            'IdProv' => ['required', Rule::exists('providers', 'id')],
+            'DateSupply' => 'required',
         ], [
-            'suppl-idprov.required' => 'Id постачальника має бути заповнений!',
-            'suppl-date.required' => 'Дата поставки має бути заповненою!',
+            'IdProv.required' => 'Назва постачальника має бути заповнений!',
+            'IdProv.exists' => 'Оберіть постачальника!',
+            'DateSupply.required' => 'Дата поставки має бути заповненою!',
         ]);
 
-        Supply::create([
-            'IdProv' => $data['suppl-idprov'],
-            'DateSupply' => $data['suppl-date'],
-        ]);
+        Supply::create($data);
 
         return redirect('/supplies');
     }

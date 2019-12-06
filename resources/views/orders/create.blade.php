@@ -9,13 +9,21 @@
         {{ csrf_field() }}
 
         <div class="form-group">
-            <label for="order-idprod">Id продукта</label>
-            <input type="text" class="form-control {{ $errors->has('order-idprod') ? 'is-invalid':'' }}" value="{{ old('order-idprod') }}"
-                   name="order-idprod" id="order-idprod" placeholder="Введіть id продукта">
+            <label for="IdProd">Назва продукту</label>
+
+            <select name="IdProd" id="IdProd" class="browser-default custom-select">
+                <option value="0" disabled selected>Оберіть назву продукту</option>
+
+                @foreach($products as $product)
+                    <option value="{{ $product->id }}">
+                        {{ $product->NameProduct }}
+                    </option>
+                @endforeach
+            </select>
 
             <small class="form-text text-danger">
                 <ul>
-                    @foreach($errors->get('order-idprod') as $error)
+                    @foreach($errors->get('IdProd') as $error)
                         <li>{{ $error }}</li>
                     @endforeach
                 </ul>
@@ -23,13 +31,21 @@
         </div>
 
         <div class="form-group">
-            <label for="order-idempl">Id працівника</label>
-            <input type="text" class="form-control {{ $errors->has('order-idempl') ? 'is-invalid':'' }}" value="{{ old('order-idempl') }}"
-                   name="order-idempl" id="order-idempl" placeholder="Введіть id працівника">
+            <label for="IdEmpl">ПІБ працівника</label>
+
+            <select name="IdEmpl" id="IdEmpl" class="browser-default custom-select">
+                <option value="0" disabled selected>Оберіть ПІБ працівника</option>
+
+                @foreach($employees as $employee)
+                    <option value="{{ $employee->id }}">
+                        {{ $employee->FullNameEmployee }}
+                    </option>
+                @endforeach
+            </select>
 
             <small class="form-text text-danger">
                 <ul>
-                    @foreach($errors->get('order-idempl') as $error)
+                    @foreach($errors->get('IdEmpl') as $error)
                         <li>{{ $error }}</li>
                     @endforeach
                 </ul>
@@ -37,13 +53,21 @@
         </div>
 
         <div class="form-group">
-            <label for="order-idcust">Id клієнта</label>
-            <input type="text" class="form-control {{ $errors->has('order-idcust') ? 'is-invalid':'' }}" value="{{ old('order-idcust') }}"
-                   name="order-idcust" id="order-idcust" placeholder="Введіть id клієнта">
+            <label for="IdCust">ПІБ клієнта</label>
+
+            <select name="IdCust" id="IdCust" class="browser-default custom-select">
+                <option value="0" disabled selected>Оберіть ПІБ працівника</option>
+
+                @foreach($customers as $customer)
+                    <option value="{{ $customer->id }}">
+                        {{ $customer->FullNameCustomer }}
+                    </option>
+                @endforeach
+            </select>
 
             <small class="form-text text-danger">
                 <ul>
-                    @foreach($errors->get('order-idcust') as $error)
+                    @foreach($errors->get('IdCust') as $error)
                         <li>{{ $error }}</li>
                     @endforeach
                 </ul>
@@ -51,13 +75,13 @@
         </div>
 
         <div class="form-group">
-            <label for="order-date">Дата замовлення</label>
-            <input type="text" class="form-control {{ $errors->has('order-date') ? 'is-invalid':'' }}" value="{{ old('order-date') }}"
-                   name="order-date" id="order-date" placeholder="Введіть дату замовлення">
+            <label for="DateOrder">Дата замовлення</label>
+            <input type="text" class="form-control {{ $errors->has('DateOrder') ? 'is-invalid':'' }}" value="{{ old('DateOrder') }}"
+                   name="DateOrder" id="DateOrder" placeholder="Введіть дату замовлення">
 
             <small class="form-text text-danger">
                 <ul>
-                    @foreach($errors->get('order-date') as $error)
+                    @foreach($errors->get('DateOrder') as $error)
                         <li>{{ $error }}</li>
                     @endforeach
                 </ul>
