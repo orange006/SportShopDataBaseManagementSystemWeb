@@ -11,63 +11,60 @@
         {{ method_field("patch") }}
 
         <div class="form-group">
-            <label for="IdProd">Id продукта</label>
-            <input type="text" class="form-control {{ $errors->has('IdProd') ? 'is-invalid':'' }}"
-                   value="{{ old('IdProd') ? old('IdProd') : $order->IdProd }}"
-                   name="IdProd" id="order-idprod" placeholder="Введіть id продукта">
+            <label for="IdProd">Назва продукта</label>
 
-            <small class="form-text text-danger">
-                <ul>
-                    @foreach($errors->get('IdProd') as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </small>
+            <select name="IdProd" id="IdProd" class="browser-default custom-select">
+                <option value="0" disabled>Оберіть продукт</option>
+
+                @foreach($products as $product)
+                    <option @if($order->product->id == $product->id) selected @endif value="{{ $product->id }}">
+                        {{ $product->NameProduct }}
+                    </option>
+                @endforeach
+            </select>
+
+            @include('includes/validationErr', ['errFieldName' => 'IdProd'])
         </div>
 
         <div class="form-group">
-            <label for="IdEmpl">Id працівника</label>
-            <input type="text" class="form-control {{ $errors->has('IdEmpl') ? 'is-invalid':'' }}"
-                   value="{{ old('IdEmpl') ? old('IdEmpl') : $order->IdProd }}"
-                   name="IdEmpl" id="order-idempl" placeholder="Введіть id працівника">
+            <label for="IdEmpl">ПІБ працівника</label>
 
-            <small class="form-text text-danger">
-                <ul>
-                    @foreach($errors->get('IdEmpl') as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </small>
+            <select name="IdEmpl" id="IdEmpl" class="browser-default custom-select">
+                <option value="0" disabled>Оберіть працівника</option>
+
+                @foreach($employees as $employee)
+                    <option @if($order->employee->id == $employee->id) selected @endif value="{{ $employee->id }}">
+                        {{ $employee->FullNameEmployee }}
+                    </option>
+                @endforeach
+            </select>
+
+            @include('includes/validationErr', ['errFieldName' => 'IdEmpl'])
         </div>
 
         <div class="form-group">
-            <label for="IdEmpl">Id клієнта</label>
-            <input type="text" class="form-control {{ $errors->has('IdCust') ? 'is-invalid':'' }}"
-                   value="{{ old('IdCust') ? old('IdCust') : $order->IdCust }}"
-                   name="IdCust" id="order-idcust" placeholder="Введіть id клієнта">
+            <label for="IdCust">ПІБ клієнта</label>
 
-            <small class="form-text text-danger">
-                <ul>
-                    @foreach($errors->get('IdCust') as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </small>
+            <select name="IdCust" id="IdCust" class="browser-default custom-select">
+                <option value="0" disabled>Оберіть клієнта</option>
+
+                @foreach($customers as $customer)
+                    <option @if($order->customer->id == $customer->id) selected @endif value="{{ $customer->id }}">
+                        {{ $customer->FullNameCustomer }}
+                    </option>
+                @endforeach
+            </select>
+
+            @include('includes/validationErr', ['errFieldName' => 'IdCust'])
         </div>
 
         <div class="form-group">
-            <label for="DateOrder">Дата замовлення</label>
-            <input type="text" class="form-control {{ $errors->has('DateOrder') ? 'is-invalid':'' }}"
-                   value="{{ old('DateOrder') ? old('DateOrder') : $order->IdCust }}"
-                   name="DateOrder" id="order-date" placeholder="Введіть дату замовлення">
-
-            <small class="form-text text-danger">
-                <ul>
-                    @foreach($errors->get('DateOrder') as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </small>
+            @include("includes/input", [
+                'fieldId' => 'DateOrder',
+                'labelText' => 'Дата замовлення',
+                'placeHolderText' => 'Введіть дату замовлення',
+                'fieldValue' => $order->DateOrder
+            ])
         </div>
 
         <button type="submit" class="btn btn-primary float-right">Змінити</button>

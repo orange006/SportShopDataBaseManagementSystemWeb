@@ -13,9 +13,9 @@
                 <thead>
                     <tr>
                         <th scope="col">id</th>
-                        <th scope="col">IdProd</th>
-                        <th scope="col">IdEmpl</th>
-                        <th scope="col">IdCust</th>
+                        <th scope="col">Назва продукту</th>
+                        <th scope="col">ПІБ працівника</th>
+                        <th scope="col">ПІБ клієнта</th>
                         <th scope="col">Date Order</th>
                         <th scope="col"></th>
                     </tr>
@@ -24,9 +24,9 @@
                     @foreach ($orders as $order)
                         <tr>
                             <td>{{ $order->id }}</td>
-                            <td>{{ $order->IdProd }}</td>
-                            <td>{{ $order->IdEmpl }}</td>
-                            <td>{{ $order->IdCust }}</td>
+                            <td>{{ $order->product->NameProduct }}</td>
+                            <td>{{ $order->employee->FullNameEmployee }}</td>
+                            <td>{{ $order->customer->FullNameCustomer }}</td>
                             <td>{{ $order->DateOrder }}</td>
                             <td>
                                 <a href="/orders/{{ $order->id }}" class="btn btn-outline-secondary">Переглянути</a>

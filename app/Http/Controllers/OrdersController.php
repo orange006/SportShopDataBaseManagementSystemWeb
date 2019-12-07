@@ -25,20 +25,7 @@ class OrdersController extends Controller {
     }
 
     public function store(Request $request) {
-        $data = request()->validate([
-            'IdProd' => ['required', Rule::exists('products', 'id')],
-            'IdEmpl' => ['required', Rule::exists('employees', 'id')],
-            'IdCust' => ['required', Rule::exists('customers', 'id')],
-            'DateOrder' => 'required',
-        ], [
-            'IdProd.required' => 'Id продукту має бути заповнено!',
-            'IdProd.exists' => 'Оберіть продукт!',
-            'IdEmpl.required' => 'Id працівника має бути заповнено!',
-            'IdEmpl.exists' => 'Оберіть продукт!',
-            'IdCust.required' => 'Id клієнта має бути заповнено!',
-            'IdCust.exists' => 'Оберіть продукт!',
-            'DateOrder.required' => 'Дата замовлення має бути заповненою!',
-        ]);
+        $data = $this->validateData($request);
 
         Order::create($data);
 
@@ -48,23 +35,28 @@ class OrdersController extends Controller {
     public function edit(Order $order) {
         return view('orders/edit', [
             'order' => $order,
+            'products' => Product::all()->sortBy('id'),
+            'employees' => Employee::all()->sortBy('id'),
+            'customers' => Customer::all()->sortBy('id'),
         ]);
     }
 
     public function update(Order $order) {
-        $order->update(
-            \request()->validate([
-                'IdProd' => 'required',
-                'IdEmpl' => 'required',
-                'IdCust' => 'required',
-                'DateOrder' => 'required',
-            ], [
-                'IdProd.required' => 'Id продукту має бути заповнено!',
-                'IdEmpl.required' => 'Id працівника має бути заповнено!',
-                'IdCust.required' => 'Id клієнта має бути заповнено!',
-                'DateOrder.required' => 'Дата замовлення має бути заповненою!',
-            ])
-        );
+        $data = $this->validateData(\request());
+
+
+        $order->DateOrder = $data['DateOrder'];
+
+        $product = Product::find($data['IdProd']);
+        $order->product()->associate($product);
+
+        $employee = Employee::find($data['IdEmpl']);
+        $order->employee()->associate($employee);
+
+        $customer = Customer::find($data['IdCust']);
+        $order->customer()->associate($customer);
+
+        $order->save();
 
         return redirect('/orders');
     }
@@ -76,6 +68,23 @@ class OrdersController extends Controller {
     public function show(Order $order) {
         return view('orders/show', [
             'order' => $order
+        ]);
+    }
+
+    private function validateData($data) {
+        return $this->validate($data, [
+            'IdProd' => ['required', Rule::exists('products', 'id')],
+            'IdEmpl' => ['required', Rule::exists('employees', 'id')],
+            'IdCust' => ['required', Rule::exists('customers', 'id')],
+            'DateOrder' => 'required',
+        ], [
+            'IdProd.required' => 'Id продукту має бути заповнено!',
+            'IdProd.exists' => 'Оберіть іd продукту!',
+            'IdEmpl.required' => 'Id працівника має бути заповнено!',
+            'IdEmpl.exists' => 'Оберіть іd працівника!',
+            'IdCust.required' => 'Id клієнта має бути заповнено!',
+            'IdCust.exists' => 'Оберіть іd клієнта!',
+            'DateOrder.required' => 'Дата замовлення має бути заповненою!',
         ]);
     }
 }

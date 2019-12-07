@@ -25,7 +25,7 @@ class Order extends Model {
         );
     }
 
-    public function provider() {
+    public function customer() {
         return $this->belongsTo(
             Customer::class,
             'IdCust',

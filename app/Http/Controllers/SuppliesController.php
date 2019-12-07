@@ -21,14 +21,7 @@ class SuppliesController extends Controller {
     }
 
     public function store(Request $request) {
-        $data = request()->validate([
-            'IdProv' => ['required', Rule::exists('providers', 'id')],
-            'DateSupply' => 'required',
-        ], [
-            'IdProv.required' => 'Назва постачальника має бути заповнений!',
-            'IdProv.exists' => 'Оберіть постачальника!',
-            'DateSupply.required' => 'Дата поставки має бути заповненою!',
-        ]);
+        $data = $this->validateData($request);
 
         Supply::create($data);
 
@@ -38,19 +31,20 @@ class SuppliesController extends Controller {
     public function edit(Supply $supply) {
         return view('supplies/edit', [
             'supply' => $supply,
+            'providers' => Provider::all()->sortBy('id')
         ]);
     }
 
     public function update(Supply $supply) {
-        $supply->update(
-            \request()->validate([
-                'IdProv' => 'required',
-                'DateSupply' => 'required',
-            ], [
-                'IdProv.required' => 'Id постачальника має бути заповнений!',
-                'DateSupply.required' => 'Дата поставки має бути заповненою!',
-            ])
-        );
+        $data = $this->validateData(\request());
+
+        $supply->DateSupply = $data['DateSupply'];
+
+        $provider = Provider::find($data['IdProv']);
+
+        $supply->provider()->associate($provider);
+
+        $supply->save();
 
         return redirect('/supplies');
     }
@@ -62,6 +56,17 @@ class SuppliesController extends Controller {
     public function show(Supply $supply) {
         return view('supplies/show', [
             'supply' => $supply
+        ]);
+    }
+
+    private function validateData($data) {
+        return $this->validate($data, [
+            'IdProv' => ['required', Rule::exists('providers', 'id')],
+            'DateSupply' => 'required',
+        ], [
+            'IdProv.required' => 'Назва постачальника має бути заповнений!',
+            'IdProv.exists' => 'Оберіть постачальника!',
+            'DateSupply.required' => 'Дата поставки має бути заповненою!',
         ]);
     }
 }

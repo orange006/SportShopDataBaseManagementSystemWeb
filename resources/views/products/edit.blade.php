@@ -12,107 +12,72 @@
 
         <div class="form-group">
             <label for="IdSuppl">Id поставки</label>
-            <input type="text" class="form-control {{ $errors->has('IdSuppl') ? 'is-invalid':'' }}"
-                   value="{{ old('IdSuppl') ? old('IdSuppl') : $product->IdSuppl }}"
-                   name="IdSuppl" id="prod-idsuppl" placeholder="Введіть id поставки">
 
-            <small class="form-text text-danger">
-                <ul>
-                    @foreach($errors->get('IdSuppl') as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </small>
+            <select name="IdSuppl" id="IdSuppl" class="browser-default custom-select">
+                <option value="0" disabled>Оберіть id поставки</option>
+
+                @foreach($supplies as $supply)
+                    <option @if($product->supply->id == $supply->id) selected @endif value="{{ $supply->id }}">
+                        {{ $supply->id }}
+                    </option>
+                @endforeach
+            </select>
+
+            @include('includes/validationErr', ['errFieldName' => 'IdSuppl'])
         </div>
 
         <div class="form-group">
-            <label for="NameProduct">Назва</label>
-            <input type="text" class="form-control {{ $errors->has('NameProduct') ? 'is-invalid':'' }}"
-                   value="{{ old('NameProduct') ? old('NameProduct') : $product->NameProduct }}"
-                   name="NameProduct" id="prod-name" placeholder="Введіть назву продукту">
-
-            <small class="form-text text-danger">
-                <ul>
-                    @foreach($errors->get('NameProduct') as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </small>
+            @include("includes/input", [
+                'fieldId' => 'NameProduct',
+                'labelText' => 'Назва',
+                'placeHolderText' => 'Введіть назву продукту',
+                'fieldValue' => $product->NameProduct
+            ])
         </div>
 
         <div class="form-group">
-            <label for="TypeProduct">Тип</label>
-            <input type="text" class="form-control {{ $errors->has('TypeProduct') ? 'is-invalid':'' }}"
-                   value="{{ old('TypeProduct') ? old('TypeProduct') : $product->TypeProduct }}"
-                   name="TypeProduct" id="prod-type" placeholder="Введіть тип продукту">
-
-            <small class="form-text text-danger">
-                <ul>
-                    @foreach($errors->get('TypeProduct') as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </small>
+            @include("includes/input", [
+                'fieldId' => 'TypeProduct',
+                'labelText' => 'Тип',
+                'placeHolderText' => 'Введіть тип продукту',
+                'fieldValue' => $product->TypeProduct
+            ])
         </div>
 
         <div class="form-group">
-            <label for="CostPurchase">Вартість придбання</label>
-            <input type="text" class="form-control {{ $errors->has('CostPurchase') ? 'is-invalid':'' }}"
-                   value="{{ old('CostPurchase') ? old('CostPurchase') : $product->CostPurchase }}"
-                   name="CostPurchase" id="prod-purchase" placeholder="Введіть вартість придбання">
-
-            <small class="form-text text-danger">
-                <ul>
-                    @foreach($errors->get('CostPurchase') as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </small>
+            @include("includes/input", [
+                'fieldId' => 'CostPurchase',
+                'labelText' => 'Вартість придбання',
+                'placeHolderText' => 'Введіть вартість придбання',
+                'fieldValue' => $product->CostPurchase
+            ])
         </div>
 
         <div class="form-group">
-            <label for="CostSale">Вартість продажу</label>
-            <input type="text" class="form-control {{ $errors->has('CostSale') ? 'is-invalid':'' }}"
-                   value="{{ old('CostSale') ? old('CostSale') : $product->CostSale }}"
-                   name="CostSale" id="prod-sale" placeholder="Введіть вартість продажу">
-
-            <small class="form-text text-danger">
-                <ul>
-                    @foreach($errors->get('CostSale') as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </small>
+            @include("includes/input", [
+                'fieldId' => 'CostSale',
+                'labelText' => 'Вартість продажу',
+                'placeHolderText' => 'Введіть вартість продажу',
+                'fieldValue' => $product->CostSale
+            ])
         </div>
 
         <div class="form-group">
-            <label for="Availability">Наявність</label>
-            <input type="text" class="form-control {{ $errors->has('Availability') ? 'is-invalid':'' }}"
-                   value="{{ old('Availability') ? old('Availability') : $product->Availability }}"
-                   name="Availability" id="prod-availability" placeholder="Вкажіть наявність">
-
-            <small class="form-text text-danger">
-                <ul>
-                    @foreach($errors->get('Availability') as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </small>
+            @include("includes/input", [
+                'fieldId' => 'Availability',
+                'labelText' => 'Наявність',
+                'placeHolderText' => 'Вкажіть наявність',
+                'fieldValue' => $product->Availability
+            ])
         </div>
 
         <div class="form-group">
-            <label for="Quantity">Кількість</label>
-            <input type="text" class="form-control {{ $errors->has('Quantity') ? 'is-invalid':'' }}"
-                   value="{{ old('Quantity') ? old('Quantity') : $product->Quantity }}"
-                   name="Quantity" id="prod-quantity" placeholder="Введіть кількість">
-
-            <small class="form-text text-danger">
-                <ul>
-                    @foreach($errors->get('Quantity') as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </small>
+            @include("includes/input", [
+                'fieldId' => 'Quantity',
+                'labelText' => 'Кількість',
+                'placeHolderText' => 'Введіть кількість',
+                'fieldValue' => $product->Quantity
+            ])
         </div>
 
         <button type="submit" class="btn btn-primary float-right">Змінити</button>
