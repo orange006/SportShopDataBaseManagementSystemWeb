@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Customer;
-use Illuminate\Http\Request;
 
 class CustomersController extends Controller {
+    public function __construct() {
+        $this->middleware('auth');
+    }
+
     public function index() {
         return view('customers/index', [
             'customers' => Customer::all()->sortBy("id"),

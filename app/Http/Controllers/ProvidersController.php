@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Provider;
-use App\Supply;
-use Illuminate\Http\Request;
 
 class ProvidersController extends Controller {
+    public function __construct() {
+        $this->middleware('auth');
+    }
+
     public function index() {
         return view('providers/index', [
             'providers' => Provider::all()->sortBy("id"),

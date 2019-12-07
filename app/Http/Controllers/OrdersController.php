@@ -10,6 +10,10 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
 class OrdersController extends Controller {
+    public function __construct() {
+        $this->middleware('auth');
+    }
+
     public function index() {
         return view('orders/index', [
             'orders' => Order::all()->sortBy("id"),

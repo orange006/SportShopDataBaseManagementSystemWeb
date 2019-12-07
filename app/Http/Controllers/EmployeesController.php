@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Employee;
-use Illuminate\Http\Request;
 
 class EmployeesController extends Controller {
+    public function __construct() {
+        $this->middleware('auth');
+    }
+
     public function index() {
         return view('employees/index', [
             'employees' => Employee::all()->sortBy("id"),

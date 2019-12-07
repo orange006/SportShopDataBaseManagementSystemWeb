@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ asset('css/cover.css') }}">
         <script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
+        <script src="{{ asset('js/popper.min.js') }}"></script>
         <script src="{{ asset('js/bootstrap.min.js') }}"></script>
         <title>
             @yield("app-title")
@@ -21,13 +22,40 @@
                     <h3 class="masthead-brand">@yield("app-title")</h3>
                     <nav class="nav nav-masthead mt-3 justify-content-center">
                         <a class="nav-link" href="/">Головна</a>
-                        <a class="nav-link" href="/employees">Працівники</a>
-                        <a class="nav-link" href="/customers">Клієнти</a>
-                        <a class="nav-link" href="/orders">Замовлення</a>
-                        <a class="nav-link" href="/products">Продукція</a>
-                        <a class="nav-link" href="/supplies">Поставки</a>
-                        <a class="nav-link" href="/providers">Постачальники</a>
                         <a class="nav-link" href="/about">Про нас</a>
+
+                        @guest
+                            <a class="nav-link" href="{{ route('login') }}">Увійти</a>
+
+                            @if (Route::has('register'))
+                                <a class="nav-link mr-3" href="{{ route('register') }}">Реєстрація</a>
+                            @endif
+                        @else
+                            <a class="nav-link" href="/employees">Працівники</a>
+                            <a class="nav-link" href="/customers">Клієнти</a>
+                            <a class="nav-link" href="/orders">Замовлення</a>
+                            <a class="nav-link" href="/products">Продукція</a>
+                            <a class="nav-link" href="/supplies">Поставки</a>
+                            <a class="nav-link" href="/providers">Постачальники</a>
+
+                            {{-- TODO styles --}}
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }}
+                                <span class="caret"></span>
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    Logout
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
+                        @endguest
                     </nav>
                 </div>
             </header>
